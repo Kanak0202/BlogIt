@@ -23,8 +23,8 @@ axiosInstance.interceptors.request.use(
         }else if(config.TYPE.query){
             // console.log(config.TYPE.query);
             
-            config.url = config.url+'/'+config.TYPE.query;
-            // config.url = config.url + "/" + config.TYPE.query;
+            // config.url = config.url+'/'+config.TYPE.query;
+            config.url = config.url;
             // console.log(config.url);
         }
         return config;

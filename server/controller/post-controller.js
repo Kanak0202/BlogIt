@@ -30,11 +30,10 @@ export const getAllPosts = async(request, response)=>{
 }
 
 export const getPost = async(request, response)=>{
-    console.log("Hello");
     try{
-        console.log(request.params.id);
+        // console.log(request.params.id);
         const post = await Post.findById(request.params.id);
-        console.log(post);
+        // console.log(post);
         return response.status(200).json(post);
     }catch(error){
         return response.status(500).json({msg: error.message});

@@ -90,8 +90,9 @@ const Login = ({isUserAuthenticated})=>{
     }
 
     const signupUser = async ()=>{
+        // console.log("Signup");
        let response = await API.userSignup(signup);
-       console.log(response);
+    //    console.log(response);
        if(response.isSuccess){
         setError('');
         setSignup(signupInitialValues);
@@ -106,7 +107,9 @@ const Login = ({isUserAuthenticated})=>{
     }
 
     const loginUser = async ()=>{
+        console.log("Login");
         let response = await API.userLogin(login);
+        console.log(response);
         if(response.isSuccess){
             setError('');
             sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);

@@ -14,7 +14,7 @@ router.post('/login', loginUser);
 router.post("/file/upload", upload.single("file"), uploadImage);
 router.get('/file/:filename', getImage);
 router.post('/create', authenticateToken, createPost);
-router.get('/posts', authenticateToken, getAllPosts);
-router.get('/post/:id', authenticateToken, getPost);
+router.get('/posts', authenticateToken,getAllPosts);
+router.get('/post/:id', getPost);
 
 export default router;

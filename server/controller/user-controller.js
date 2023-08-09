@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config(); //initilaze .env
 
 export const signupUser = async (request, response)=>{
+    // console.log("Inside Signup");
     try{
         // const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(request.body.password, 10);
@@ -25,6 +26,7 @@ export const signupUser = async (request, response)=>{
 }
 
 export const loginUser = async (request, response)=>{
+    // console.log("Inside Login");
     let user = await User.findOne({username:request.body.username});
     if(!user){
         return response.status(400).json({msg:'Username does not match'});

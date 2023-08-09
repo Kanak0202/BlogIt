@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Box, Grid } from "@mui/material";
 import {API} from "../../../service/api.js";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 
 //components
 import Post from "./Post.jsx";
@@ -14,6 +14,7 @@ const Posts = ()=>{
 
     const [searchParams] = useSearchParams();
     const category = searchParams.get('category');
+    const navigate = useNavigate();
 
     useEffect(()=>{
         const fetchData = async()=>{
@@ -25,15 +26,19 @@ const Posts = ()=>{
         fetchData();
     },[category])
 
+    const viewPost = (id)=>{
+        navigate(`/details/${id}`);
+    }
+
     return (
         <>
             {
                 posts && posts.length>0 ? posts.map(post=>{
                     return(
-                        <Grid item lg={3} sm={4} xs={12}>
-                            <Link to={`/details/${post._id}`} style={{textDecoration:"none", color:"inherit"}}>
+                        <Grid item lg={3} sm={4} xs={12} onClick={()=>viewPost(post._id)}>
+                            {/* <Link to={`/details/${post._id}`} style={{textDecoration:"none", color:"inherit"}}> */}
                                 <Post post={post}/>
-                            </Link>
+                            {/* </Link> */}
                         </Grid>
                          );
             } )
