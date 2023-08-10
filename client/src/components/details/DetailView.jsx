@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import { Box, Typography, styled } from "@mui/material";
-import { useParams, Link } from "react-router-dom";
+import { Box, Typography, styled} from "@mui/material";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { API } from "../../service/api.js";
 import {DataContext} from "../../context/DataProvider.jsx";
 
@@ -8,9 +8,14 @@ import {DataContext} from "../../context/DataProvider.jsx";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const Container = styled(Box)`
-  margin:50px 100px;
-`;
+const Container = styled(Box)(({theme})=>({
+  margin:'50px 100px',
+  [theme.breakpoints.down('md')]:{
+    margin:0
+  }
+}));
+  
+
 
 const Image = styled('img')({
   width:'100%',
@@ -57,6 +62,8 @@ const DetailView = () => {
 
   const {account} = useContext(DataContext);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       let result = await fetch(`http://localhost:8000/post/${id}`);
@@ -67,6 +74,13 @@ const DetailView = () => {
     fetchData();
   }, [id]); // Include 'id' in the dependency array
 
+  const deletePost = async()=>{
+    let result = await fetch(`http://localhost:8000/delete/${id}`,
+      { method: 'DELETE' }
+    );
+    navigate('/');
+  }
+
   return (
     <Container>
       <Image src={url} alt="blog" />
@@ -74,7 +88,7 @@ const DetailView = () => {
         {account.username === post.username && 
         <>
         <Link to={`/update/${post._id}`}><Edit color="primary"/></Link>
-        <Delete color="error"/>
+        <Delete color="error" onClick={deletePost}/>
         </>
         }
       </Box>
