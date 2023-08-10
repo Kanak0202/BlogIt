@@ -10,6 +10,7 @@ const Container = styled(Box)`
     display:flex;
     align-items:center;
     flex-direction:column;
+    cursor:pointer;
     & > p{
         padding: 0 5px 5px 5px;
     }

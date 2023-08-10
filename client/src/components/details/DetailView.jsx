@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Box, Typography, styled } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { API } from "../../service/api.js";
 import {DataContext} from "../../context/DataProvider.jsx";
 
@@ -73,8 +73,8 @@ const DetailView = () => {
       <Box style={{float:'right'}}>
         {account.username === post.username && 
         <>
-        <Edit color="primary"/>
-        <Delete olor="error"/>
+        <Link to={`/update/${post._id}`}><Edit color="primary"/></Link>
+        <Delete color="error"/>
         </>
         }
       </Box>

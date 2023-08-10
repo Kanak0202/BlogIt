@@ -35,7 +35,7 @@ const Posts = ()=>{
             {
                 posts && posts.length>0 ? posts.map(post=>{
                     return(
-                        <Grid item lg={3} sm={4} xs={12} onClick={()=>viewPost(post._id)}>
+                        <Grid key={post._id} item lg={3} sm={4} xs={12} onClick={()=>viewPost(post._id)}>
                             {/* <Link to={`/details/${post._id}`} style={{textDecoration:"none", color:"inherit"}}> */}
                                 <Post post={post}/>
                             {/* </Link> */}
